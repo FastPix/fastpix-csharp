@@ -41,7 +41,8 @@ jobs:
         uses: NuGet/login@v1
         id: login
         with:
-          user: FastPix   # nuget.org account that owns the trusted publishing policy
+          user: ${{ secrets.NUGET_USER }}   # nuget.org username of the person who created the trusted publishing policy (not the org)
+   # nuget.org account that owns the trusted publishing policy
 
       - name: Push to NuGet
         run: >
