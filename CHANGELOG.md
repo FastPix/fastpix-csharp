@@ -25,6 +25,10 @@ All notable changes to this project will be documented in this file.
 - Live stream responses (create, get, list, update) now include an optional `MediaQuality`
   (`standard`, `pro`, `premium`), kept raw if the server sends a newer value.
 
+### Changed
+- `IFastpixSDK` has six new properties, one per Cloud Playout resource. Code that uses
+  `FastpixSDK` is unaffected; a class that implements `IFastpixSDK` itself must add them.
+
 ## [1.2.1]
 
 ### Changed
