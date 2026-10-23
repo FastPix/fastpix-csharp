@@ -35,7 +35,7 @@ public class CloudPlayoutTests
             """{"success":true,"data":[{"id":"c1","name":"Morning"},{"id":"c2","name":"Evening"}],"pagination":{"totalRecords":2,"currentOffset":1,"offsetCount":1}}""",
             "data[1].id", "c2"),
         new("create-cloud-playout-channel", "CloudPlayoutChannels", "CreateAsync",
-            """{"body":{"name":"Morning","type":"schedule","startTime":"2026-11-01T00:00:00","endTime":"2026-11-02T00:00:00"}}""",
+            """{"request":{"name":"Morning","type":"schedule","startTime":"2026-11-01T00:00:00","endTime":"2026-11-02T00:00:00"}}""",
             "POST", Ch, "", """{"name":"Morning","type":"schedule","startTime":"2026-11-01T00:00:00","endTime":"2026-11-02T00:00:00"}""",
             201, "CloudPlayoutChannelResponse", """{"success":true,"data":{"id":"c1","name":"Morning","playbackUrl":"https://stream.fastpix.com/pb1.m3u8"}}""",
             "data.id", "c1"),
@@ -160,9 +160,14 @@ public class CloudPlayoutTests
 
     private static readonly Dictionary<string, Row> Variants = new()
     {
+        // Defaults follow the SDK's other list methods: limit 10, offset 1, orderBy desc (the spec's SortOrder default).
+        ["list-channels-defaults"] = Rows["list-cloud-playout-channels"] with
+        {
+            Args = """{"type":"loop"}""",
+        },
         ["create-channel-spec-body"] = Rows["create-cloud-playout-channel"] with
         {
-            Args = """{"body":{"name":"Morning","type":"loop","startTime":"2026-11-01T00:00:00","endTime":"2026-11-02T00:00:00","liveSupport":false,"genres":["news"]}}""",
+            Args = """{"request":{"name":"Morning","type":"loop","startTime":"2026-11-01T00:00:00","endTime":"2026-11-02T00:00:00","liveSupport":false,"genres":["news"]}}""",
             Body = """{"name":"Morning","type":"loop","startTime":"2026-11-01T00:00:00","endTime":"2026-11-02T00:00:00","liveSupport":false,"genres":["news"]}""",
         },
         ["add-event-playlist"] = Rows["add-event-to-cloud-playout-schedule-channel"] with

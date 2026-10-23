@@ -42,7 +42,7 @@ namespace Fastpix
         /// An operations dashboard lists all channels in the workspace to show which are on air, which are still in draft, and when each one is scheduled to end.
         /// </remarks>
         /// </summary>
-        Task<ListCloudPlayoutChannelsResponse> ListAsync(ListCloudPlayoutChannelsType type, long? limit = 10, long? offset = 1, SortOrder? orderBy = null, RetryConfig? retryConfig = null, CancellationToken? cancellationToken = null);
+        Task<ListCloudPlayoutChannelsResponse> ListAsync(ListCloudPlayoutChannelsType type, long? limit = 10, long? offset = 1, SortOrder? orderBy = Fastpix.Models.Components.SortOrder.Desc, RetryConfig? retryConfig = null, CancellationToken? cancellationToken = null);
 
         /// <summary>
         /// Create a channel
@@ -70,7 +70,7 @@ namespace Fastpix
         /// A news publisher creates a `loop` channel that repeats a half-hour bulletin around the clock, with live support enabled so that breaking coverage can interrupt the loop, and a slate to cover any gap.
         /// </remarks>
         /// </summary>
-        Task<CreateCloudPlayoutChannelResponse> CreateAsync(CloudPlayoutChannelRequest body, RetryConfig? retryConfig = null, CancellationToken? cancellationToken = null);
+        Task<CreateCloudPlayoutChannelResponse> CreateAsync(CloudPlayoutChannelRequest request, RetryConfig? retryConfig = null, CancellationToken? cancellationToken = null);
 
         /// <summary>
         /// Get channel by ID
@@ -266,7 +266,7 @@ namespace Fastpix
             SDKConfiguration = config;
         }
 
-        public async Task<ListCloudPlayoutChannelsResponse> ListAsync(ListCloudPlayoutChannelsType type, long? limit = 10, long? offset = 1, SortOrder? orderBy = null, RetryConfig? retryConfig = null, CancellationToken? cancellationToken = null)
+        public async Task<ListCloudPlayoutChannelsResponse> ListAsync(ListCloudPlayoutChannelsType type, long? limit = 10, long? offset = 1, SortOrder? orderBy = Fastpix.Models.Components.SortOrder.Desc, RetryConfig? retryConfig = null, CancellationToken? cancellationToken = null)
         {
             var request = new ListCloudPlayoutChannelsRequest()
             {
@@ -360,19 +360,19 @@ namespace Fastpix
             }
         }
 
-        public async Task<CreateCloudPlayoutChannelResponse> CreateAsync(CloudPlayoutChannelRequest body, RetryConfig? retryConfig = null, CancellationToken? cancellationToken = null)
+        public async Task<CreateCloudPlayoutChannelResponse> CreateAsync(CloudPlayoutChannelRequest request, RetryConfig? retryConfig = null, CancellationToken? cancellationToken = null)
         {
-            var request = new CreateCloudPlayoutChannelRequest()
+            var operationRequest = new CreateCloudPlayoutChannelRequest()
             {
-                Body = body,
+                Body = request,
             };
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = UrlBuilder.Build(baseUrl, "/cloud-playout/channels", request, null);
+            var urlString = UrlBuilder.Build(baseUrl, "/cloud-playout/channels", operationRequest, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add(UserAgentHeader, SDKConfiguration.UserAgent);
 
-            var serializedBody = RequestBodySerializer.Serialize(request, "Body", "json", false, false);
+            var serializedBody = RequestBodySerializer.Serialize(operationRequest, "Body", "json", false, false);
             if (serializedBody != null)
             {
                 httpRequest.Content = serializedBody;

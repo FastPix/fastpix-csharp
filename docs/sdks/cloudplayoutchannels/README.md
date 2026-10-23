@@ -124,7 +124,7 @@ var start = DateTime.UtcNow.AddMinutes(5); // must be at least 3 minutes ahead; 
 var end = start.AddHours(1); // must be after start
 
 var res = await sdk.CloudPlayoutChannels.CreateAsync(
-    body: new CloudPlayoutChannelRequest() {
+    request: new CloudPlayoutChannelRequest() {
         Name = "News 24x7",
         Type = CloudPlayoutChannelRequestType.Loop,
         StartTime = start.ToString("yyyy-MM-ddTHH:mm:ss", CultureInfo.InvariantCulture),
@@ -168,7 +168,7 @@ var start = DateTime.UtcNow.AddMinutes(5); // must be at least 3 minutes ahead; 
 var end = start.AddHours(1); // must be after start
 
 var res = await sdk.CloudPlayoutChannels.CreateAsync(
-    body: new CloudPlayoutChannelRequest() {
+    request: new CloudPlayoutChannelRequest() {
         Name = "Weekend movies",
         Type = CloudPlayoutChannelRequestType.Schedule,
         StartTime = start.ToString("yyyy-MM-ddTHH:mm:ss", CultureInfo.InvariantCulture),
@@ -194,7 +194,7 @@ Console.WriteLine(
 
 | Parameter | Type | Required | Description | Example |
 | --- | --- | --- | --- | --- |
-| `Body` | [CloudPlayoutChannelRequest](../../Models/Components/CloudPlayoutChannelRequest.md) | :heavy_check_mark: | N/A | {<br/>"name": "News 24x7",<br/>"type": "loop",<br/>"startTime": "2026-11-01T00:00:00",<br/>"endTime": "2026-11-08T00:00:00",<br/>"liveSupport": true,<br/>"slateId": "default"<br/>} |
+| `request` | [CloudPlayoutChannelRequest](../../Models/Components/CloudPlayoutChannelRequest.md) | :heavy_check_mark: | N/A | {<br/>"name": "News 24x7",<br/>"type": "loop",<br/>"startTime": "2026-11-01T00:00:00",<br/>"endTime": "2026-11-08T00:00:00",<br/>"liveSupport": true,<br/>"slateId": "default"<br/>} |
 
 ### Response
 
