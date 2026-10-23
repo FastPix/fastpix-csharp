@@ -33,10 +33,34 @@ public class ResponseContractTests
         }
     }
 
+    // Text responses deserialize nothing but DefaultError, so the scan skips them; checked by name instead.
+    public static IEnumerable<object[]> TextMethods() => new[]
+    {
+        new object[] { "CloudPlayoutScheduleAndEpg", "ExportScheduleAsync", "Csv" },
+        new object[] { "CloudPlayoutScheduleAndEpg", "GetEpgAsync", "Xml" },
+    };
+
+    private static Type? DeclaredWrapper(string resource, string method) =>
+        typeof(FastpixSDK).Assembly.GetType("Fastpix." + resource)?.GetMethod(method)?.ReturnType is { IsGenericType: true } t
+            && t.GetGenericTypeDefinition() == typeof(Task<>) ? t.GetGenericArguments()[0] : null;
+
     [Fact]
     public void Scan_FindsEveryResourceMethod()
     {
-        Assert.True(Methods().Count() >= 66, $"expected at least 66 methods, scan found {Methods().Count()}");
+        var text = TextMethods().Count(r => DeclaredWrapper((string)r[0], (string)r[1]) != null);
+        Assert.Equal(2, text);
+        var total = Methods().Count() + text;
+        Assert.True(total >= 101, $"expected at least 101 methods, scan found {total}");
+    }
+
+    [Theory]
+    [MemberData(nameof(TextMethods))]
+    public void TextWrapper_CarriesStringPayload(string resource, string method, string property)
+    {
+        var wrapper = DeclaredWrapper(resource, method);
+        Assert.True(wrapper != null, $"{resource}.{method}: method or Task<> wrapper not found");
+        var prop = wrapper!.GetProperty(property);
+        Assert.True(prop?.PropertyType == typeof(string), $"{resource}.{method}: Task<{wrapper.Name}> has no {property} property of type string");
     }
 
     [Theory]

@@ -20,6 +20,21 @@ dotnet run --project tests -- all       # both
   against them, then deletes them last. It polls for async readiness (media/track) and retries
   while a playback id is still provisioning. **This mutates the workspace — use a test account.**
 
+## Cloud Playout mode
+
+```bash
+dotnet run --project tests -- cloud-playout   # MUTATES live data; run against a test workspace
+```
+
+`CloudPlayoutLiveRun` exercises all 33 Cloud Playout operations through the SDK: a loop channel
+(sequence A) and a schedule channel (sequence B), with a media, playlist, live stream, bumper filler
+and overlay it creates first. The SDK's HTTP client records each exchange, so every operation is
+checked for verb/path/query/request body against the spec, the exact success status, content type
+and response schema, and the SDK's parsed model against the raw body (CSV/XML compared as text).
+Writes are paced (20 per burst, then 1 per second), SDK retries are off, writes on channels that
+existed before the run are refused, and everything created is deleted in `finally`. Output: a console
+table and `artifacts/cloud-playout/` (per-call JSON and `REPORT.md`). Exit code 1 on any failure.
+
 ## GET mode
 
 For every `GET` operation in the OpenAPI spec the harness:
@@ -61,9 +76,17 @@ export FASTPIX_USERNAME="your-access-token"
 export FASTPIX_PASSWORD="your-secret-key"
 ```
 
+Or put them in the git-ignored `tests/.env` (copy `tests/.env.example`) and export it:
+
+```bash
+set -a; . tests/.env; set +a
+```
+
 Optional overrides:
 
 - `FASTPIX_BASE_URL` — defaults to the spec's `servers[0].url` (`https://api.fastpix.com/v1/`).
+- `FASTPIX_ENV` — a name for the environment, shown in the `cloud-playout` run's log and report
+  (default `default`).
 - `FASTPIX_SPEC` — path to the OpenAPI spec. By default the runner searches upward
   from the project for `openapi.yaml` (kept untracked at the repo root).
 

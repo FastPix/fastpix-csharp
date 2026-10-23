@@ -4,6 +4,31 @@
 All notable changes to this project will be documented in this file.
 
 ---
+## [1.3.0]
+
+### Added
+- Cloud Playout: six new resources with 33 operations for channels that play
+  media, playlists and live events as a continuous stream, on a loop or on a schedule.
+  - `CloudPlayoutChannels` (7): list, create, get, update, delete, activate, deactivate.
+  - `CloudPlayoutLoopPrograms` (11): programs on a loop channel and the media, playlists
+    and bumpers inside them.
+  - `CloudPlayoutScheduleChannel` (5): list, add, update and delete events on a schedule
+    channel, singly or in a batch.
+  - `CloudPlayoutChannelOverlays` (4): list, add, update and remove overlay placements.
+  - `CloudPlayoutScheduleAndEpg` (3): what a channel plays as JSON, a CSV export
+    (`ExportScheduleAsync` returns the body as `Csv`) and an XMLTV guide (`GetEpgAsync`
+    returns it as `Xml`); headers such as `Content-Disposition` and `X-Total-Count` are
+    on `HttpMeta.Response`.
+  - `CloudPlayoutSimulcast` (3): list, add and remove RTMP(S) restream targets.
+  - Request times are plain `yyyy-MM-ddTHH:mm:ss` strings (UTC, no `Z`); response times
+    are `DateTime?`. Response enums are open enums, request enums are strict.
+- Live stream responses (create, get, list, update) now include an optional `MediaQuality`
+  (`standard`, `pro`, `premium`), kept raw if the server sends a newer value.
+
+### Changed
+- `IFastpixSDK` has six new properties, one per Cloud Playout resource. Code that uses
+  `FastpixSDK` is unaffected; a class that implements `IFastpixSDK` itself must add them.
+
 ## [1.2.1]
 
 ### Changed

@@ -170,7 +170,7 @@ dotnet list package
 You should see an entry similar to:
 
 ```text
-Fastpix    1.1.6
+Fastpix    1.3.0
 ```
 
 The exact version may be different if a newer version has been published.
@@ -529,6 +529,55 @@ For detailed documentation, see [FastPix Live Stream Overview](https://fastpix.c
 - [Delete Simulcast](docs/sdks/simulcasts/README.md#delete) - Remove simulcast configuration
 - [Get Simulcast](docs/sdks/simulcaststream/README.md#getspecific) - Retrieve simulcast settings
 - [Update Simulcast](docs/sdks/simulcasts/README.md#update) - Modify simulcast parameters
+
+### Cloud Playout API
+
+Run 24/7 linear channels from your media library, either as a looping program or as a timed schedule.
+
+#### Channels
+- [List Channels](docs/sdks/cloudplayoutchannels/README.md#list) - Retrieve all channels, filtered by type
+- [Create Channel](docs/sdks/cloudplayoutchannels/README.md#create) - Create a loop or schedule channel
+- [Get Channel](docs/sdks/cloudplayoutchannels/README.md#getbyid) - Retrieve a specific channel
+- [Update Channel](docs/sdks/cloudplayoutchannels/README.md#update) - Modify channel settings
+- [Delete Channel](docs/sdks/cloudplayoutchannels/README.md#delete) - Remove a channel
+- [Activate Channel](docs/sdks/cloudplayoutchannels/README.md#activate) - Start a channel playing
+- [Deactivate Channel](docs/sdks/cloudplayoutchannels/README.md#deactivate) - Stop a channel playing
+
+#### Loop Programs
+- [List Programs](docs/sdks/cloudplayoutloopprograms/README.md#list) - Retrieve all programs on a channel
+- [Create Program](docs/sdks/cloudplayoutloopprograms/README.md#create) - Create a program on a loop channel
+- [Get Program](docs/sdks/cloudplayoutloopprograms/README.md#getbyid) - Retrieve a specific program
+- [Update Program](docs/sdks/cloudplayoutloopprograms/README.md#update) - Modify program settings
+- [Delete Program](docs/sdks/cloudplayoutloopprograms/README.md#delete) - Remove a program
+- [Add Media](docs/sdks/cloudplayoutloopprograms/README.md#addmedia) - Add media to a program
+- [Add Playlist](docs/sdks/cloudplayoutloopprograms/README.md#addplaylist) - Add a playlist to a program
+- [Get Media Details](docs/sdks/cloudplayoutloopprograms/README.md#getmediadetails) - Retrieve the items in a program
+- [Delete Item](docs/sdks/cloudplayoutloopprograms/README.md#deleteitem) - Remove an item from a program
+- [Delete Items](docs/sdks/cloudplayoutloopprograms/README.md#deleteitems) - Remove several items from a program
+- [Add Bumper](docs/sdks/cloudplayoutloopprograms/README.md#addbumper) - Add a bumper to a program item
+
+#### Schedule Channel Events
+- [List Events](docs/sdks/cloudplayoutschedulechannel/README.md#listevents) - Retrieve the events on a schedule channel
+- [Add Event](docs/sdks/cloudplayoutschedulechannel/README.md#addevent) - Add an event to a schedule channel
+- [Update Event](docs/sdks/cloudplayoutschedulechannel/README.md#updateevent) - Modify an event on a schedule channel
+- [Delete Event](docs/sdks/cloudplayoutschedulechannel/README.md#deleteevent) - Remove an event from a schedule channel
+- [Add Events](docs/sdks/cloudplayoutschedulechannel/README.md#addevents) - Add several events in one request
+
+#### Channel Overlays
+- [List Overlays](docs/sdks/cloudplayoutchanneloverlays/README.md#list) - Retrieve all overlays on a channel
+- [Add Overlay](docs/sdks/cloudplayoutchanneloverlays/README.md#add) - Add an overlay to a channel
+- [Update Overlay](docs/sdks/cloudplayoutchanneloverlays/README.md#update) - Modify an overlay on a channel
+- [Delete Overlay](docs/sdks/cloudplayoutchanneloverlays/README.md#delete) - Remove an overlay from a channel
+
+#### Schedule and EPG
+- [Get Schedule](docs/sdks/cloudplayoutscheduleandepg/README.md#getschedule) - Retrieve what a channel plays
+- [Export Schedule](docs/sdks/cloudplayoutscheduleandepg/README.md#exportschedule) - Export what a channel plays as CSV
+- [Get EPG](docs/sdks/cloudplayoutscheduleandepg/README.md#getepg) - Retrieve a channel's program guide as XML
+
+#### Simulcast
+- [List Simulcasts](docs/sdks/cloudplayoutsimulcast/README.md#list) - Retrieve a channel's simulcast targets
+- [Create Simulcast](docs/sdks/cloudplayoutsimulcast/README.md#create) - Add a simulcast target to a channel
+- [Delete Simulcast](docs/sdks/cloudplayoutsimulcast/README.md#delete) - Remove a simulcast target from a channel
 
 ### Video Data API
 

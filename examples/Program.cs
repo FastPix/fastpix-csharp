@@ -14,6 +14,7 @@ var examples = new Dictionary<string, Func<Task>>(StringComparer.OrdinalIgnoreCa
     ["live-streaming"]    = LiveStreaming.Run,
     ["ai-features"]       = AiFeatures.Run,
     ["playlist"]          = PlaylistManagement.Run,
+    ["cloud-playout"]     = CloudPlayout.Run,
     ["error-handling"]    = ErrorHandling.Run,
 };
 
