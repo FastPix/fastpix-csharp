@@ -83,6 +83,12 @@ namespace Fastpix
         public ILivePlayback LivePlayback { get; }
         public ISimulcasts Simulcasts { get; }
         public ISimulcastStream SimulcastStream { get; }
+        public ICloudPlayoutChannels CloudPlayoutChannels { get; }
+        public ICloudPlayoutLoopPrograms CloudPlayoutLoopPrograms { get; }
+        public ICloudPlayoutScheduleChannel CloudPlayoutScheduleChannel { get; }
+        public ICloudPlayoutChannelOverlays CloudPlayoutChannelOverlays { get; }
+        public ICloudPlayoutScheduleAndEpg CloudPlayoutScheduleAndEpg { get; }
+        public ICloudPlayoutSimulcast CloudPlayoutSimulcast { get; }
         public ISigningKeys SigningKeys { get; }
 
         /// <summary>
@@ -165,6 +171,12 @@ namespace Fastpix
         public ILivePlayback LivePlayback { get; private set; }
         public ISimulcasts Simulcasts { get; private set; }
         public ISimulcastStream SimulcastStream { get; private set; }
+        public ICloudPlayoutChannels CloudPlayoutChannels { get; private set; }
+        public ICloudPlayoutLoopPrograms CloudPlayoutLoopPrograms { get; private set; }
+        public ICloudPlayoutScheduleChannel CloudPlayoutScheduleChannel { get; private set; }
+        public ICloudPlayoutChannelOverlays CloudPlayoutChannelOverlays { get; private set; }
+        public ICloudPlayoutScheduleAndEpg CloudPlayoutScheduleAndEpg { get; private set; }
+        public ICloudPlayoutSimulcast CloudPlayoutSimulcast { get; private set; }
         public ISigningKeys SigningKeys { get; private set; }
         public IViews Views { get; private set; }
         public IDimensions Dimensions { get; private set; }
@@ -211,6 +223,18 @@ namespace Fastpix
             Simulcasts = new Simulcasts(SDKConfiguration);
 
             SimulcastStream = new SimulcastStream(SDKConfiguration);
+
+            CloudPlayoutChannels = new CloudPlayoutChannels(SDKConfiguration);
+
+            CloudPlayoutLoopPrograms = new CloudPlayoutLoopPrograms(SDKConfiguration);
+
+            CloudPlayoutScheduleChannel = new CloudPlayoutScheduleChannel(SDKConfiguration);
+
+            CloudPlayoutChannelOverlays = new CloudPlayoutChannelOverlays(SDKConfiguration);
+
+            CloudPlayoutScheduleAndEpg = new CloudPlayoutScheduleAndEpg(SDKConfiguration);
+
+            CloudPlayoutSimulcast = new CloudPlayoutSimulcast(SDKConfiguration);
 
             SigningKeys = new SigningKeys(SDKConfiguration);
 
@@ -305,6 +329,18 @@ namespace Fastpix
             Simulcasts = new Simulcasts(SDKConfiguration);
 
             SimulcastStream = new SimulcastStream(SDKConfiguration);
+
+            CloudPlayoutChannels = new CloudPlayoutChannels(SDKConfiguration);
+
+            CloudPlayoutLoopPrograms = new CloudPlayoutLoopPrograms(SDKConfiguration);
+
+            CloudPlayoutScheduleChannel = new CloudPlayoutScheduleChannel(SDKConfiguration);
+
+            CloudPlayoutChannelOverlays = new CloudPlayoutChannelOverlays(SDKConfiguration);
+
+            CloudPlayoutScheduleAndEpg = new CloudPlayoutScheduleAndEpg(SDKConfiguration);
+
+            CloudPlayoutSimulcast = new CloudPlayoutSimulcast(SDKConfiguration);
 
             SigningKeys = new SigningKeys(SDKConfiguration);
 

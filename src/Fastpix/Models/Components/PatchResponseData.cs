@@ -103,6 +103,12 @@ namespace Fastpix.Models.Components
         public bool? LowLatency { get; set; }
 
         /// <summary>
+        /// The quality tier applied to the live stream's output.
+        /// </summary>
+        [JsonProperty("mediaQuality")]
+        public PatchResponseDataMediaQuality? MediaQuality { get; set; }
+
+        /// <summary>
         /// when provided true Enables closed captions for the livestream.
         /// </summary>
         [JsonProperty("closedCaptions")]

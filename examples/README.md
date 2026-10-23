@@ -17,7 +17,7 @@ load it into your shell (any tool works — `direnv`, `dotenv`, or a plain
 | `FASTPIX_USERNAME` | Dashboard → Access Token |
 | `FASTPIX_PASSWORD` | Dashboard → Secret Key |
 | `FASTPIX_WEBHOOK_SECRET` | Dashboard → Webhooks (only for verifying webhooks) |
-| `FASTPIX_READY_MEDIA_ID` | A media that's finished processing (for the playback and AI examples) |
+| `FASTPIX_READY_MEDIA_ID` | A media that's finished processing (for the playback, AI and Cloud Playout examples) |
 
 ```bash
 export FASTPIX_USERNAME=your-access-token
@@ -44,10 +44,12 @@ Run it with no arguments to see the full list.
 | `live-streaming` | Create a live stream, toggle it, delete it |
 | `ai-features` | Generate a summary and chapters for a media |
 | `playlist` | Create a playlist, read it back, delete it |
+| `cloud-playout` | Create a loop channel, add a program and media, read its schedule, activate and deactivate it, delete it |
 | `error-handling` | Catch and inspect an API error |
 
-The `playback` and `ai-features` examples act on a media that has finished
-processing, so set `FASTPIX_READY_MEDIA_ID` to a Ready media before running them.
+The `playback`, `ai-features` and `cloud-playout` examples act on a media that has
+finished processing, so set `FASTPIX_READY_MEDIA_ID` to a Ready media before running
+them. `cloud-playout` also needs a free Cloud Playout channel slot on your account.
 
 ## Create an upload, then send the file
 

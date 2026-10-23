@@ -39,7 +39,7 @@ namespace Fastpix
             Client = client ?? new FastpixHttpClient();
             ServerUrl = "";
             ServerIndex = 0;
-            UserAgent = "fastpix-sdk/csharp 1.2.1 2.788.7 1.0.0 Fastpix";
+            UserAgent = "fastpix-sdk/csharp 1.3.0 2.788.7 1.0.0 Fastpix";
             SecuritySource = null;
             Hooks = new SdkHooks();
             RetryConfig = null;

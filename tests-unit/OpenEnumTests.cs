@@ -77,8 +77,8 @@ public class OpenEnumTests
     [Fact]
     public void AllExpectedResponseEnums_AreOpen()
     {
-        Assert.True(OpenEnums().Count() >= 48,
-            $"expected at least 48 open enums, found {OpenEnums().Count()}");
+        Assert.True(OpenEnums().Count() >= 57,
+            $"expected at least 57 open enums, found {OpenEnums().Count()}");
     }
 
     [Theory]

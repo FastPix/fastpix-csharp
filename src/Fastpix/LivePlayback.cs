@@ -108,6 +108,7 @@ namespace Fastpix
         private const string ContentTypeJson = "application/json";
         private const string UnknownContentTypeMessage = "Unknown content type received";
         private const string ApiErrorMessage = "API error occurred";
+        private const string UserAgentHeader = "user-agent";
 
         public LivePlayback(SdkConfig config)
         {
@@ -182,7 +183,7 @@ namespace Fastpix
             var urlString = UrlBuilder.Build(baseUrl, "/live/streams/{streamId}/playback-ids", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
-            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+            httpRequest.Headers.Add(UserAgentHeader, SDKConfiguration.UserAgent);
 
             var serializedBody = RequestBodySerializer.Serialize(request, "Body", "json", false, false);
             if (serializedBody != null)
@@ -277,7 +278,7 @@ namespace Fastpix
             var urlString = UrlBuilder.Build(baseUrl, "/live/streams/{streamId}/playback-ids", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
-            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+            httpRequest.Headers.Add(UserAgentHeader, SDKConfiguration.UserAgent);
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -366,7 +367,7 @@ namespace Fastpix
             var urlString = UrlBuilder.Build(baseUrl, "/live/streams/{streamId}/playback-ids/{playbackId}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+            httpRequest.Headers.Add(UserAgentHeader, SDKConfiguration.UserAgent);
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -456,7 +457,7 @@ namespace Fastpix
             var urlString = UrlBuilder.Build(baseUrl, "/live/streams/{streamId}/playback-ids/{playbackId}/domains", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Patch, urlString);
-            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+            httpRequest.Headers.Add(UserAgentHeader, SDKConfiguration.UserAgent);
 
             var serializedBody = RequestBodySerializer.Serialize(request, "Body", "json", false, false);
             if (serializedBody != null)
@@ -555,7 +556,7 @@ namespace Fastpix
             var urlString = UrlBuilder.Build(baseUrl, "/live/streams/{streamId}/playback-ids/{playbackId}/user-agents", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Patch, urlString);
-            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+            httpRequest.Headers.Add(UserAgentHeader, SDKConfiguration.UserAgent);
 
             var serializedBody = RequestBodySerializer.Serialize(request, "Body", "json", false, false);
             if (serializedBody != null)

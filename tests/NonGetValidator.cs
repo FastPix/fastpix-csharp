@@ -49,7 +49,7 @@ internal static class NonGetValidator
 
     private static string? Str(JToken? t) => t == null || t.Type == JTokenType.Null ? null : t.ToString();
 
-    private static readonly List<LifecycleStep> Steps = new()
+    internal static readonly List<LifecycleStep> Steps = new()
     {
         // ---- CREATE ----
         new() { OperationId = "create_signing_key", Phase = "CREATE", Capture = (v, c) => c["signingKeyId"] = Str(v?["data"]?["id"]) },
